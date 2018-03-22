@@ -70,6 +70,30 @@ exports['get parenthesis as punctuation'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 };
 
+exports['get name and parentheses'] = function (test) {
+	var lexer = lexers.lexer('foo()');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '(');
+	test.equal(token.type, TokenType.Punctuation);
+		
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, ')');
+	test.equal(token.type, TokenType.Punctuation);
+
+	test.equal(lexer.nextToken(), null);
+};
+
 exports['get colon as punctuation'] = function (test) {
 	var lexer = lexers.lexer(':');
 	
