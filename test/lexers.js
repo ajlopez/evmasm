@@ -60,12 +60,23 @@ exports['get parenthesis as punctuation'] = function (test) {
 	test.ok(token);
 	test.equal(token.value, '(');
 	test.equal(token.type, TokenType.Punctuation);
-	
-	
+		
 	var token = lexer.nextToken();
 	
 	test.ok(token);
 	test.equal(token.value, ')');
+	test.equal(token.type, TokenType.Punctuation);
+
+	test.equal(lexer.nextToken(), null);
+};
+
+exports['get colon as punctuation'] = function (test) {
+	var lexer = lexers.lexer(':');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, ':');
 	test.equal(token.type, TokenType.Punctuation);
 
 	test.equal(lexer.nextToken(), null);
