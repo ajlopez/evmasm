@@ -118,3 +118,27 @@ exports['get colon as punctuation'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 };
 
+exports['get integer number'] = function (test) {
+	var lexer = lexers.lexer('42');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '42');
+	test.equal(token.type, TokenType.Integer);
+
+	test.equal(lexer.nextToken(), null);
+};
+
+exports['get hexadecimal integer number'] = function (test) {
+	var lexer = lexers.lexer('0x2a');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, '0x2a');
+	test.equal(token.type, TokenType.Integer);
+
+	test.equal(lexer.nextToken(), null);
+};
+
