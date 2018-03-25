@@ -88,3 +88,9 @@ exports['storage opcodes'] = function (test) {
 	test.equal(compiler.compile('sstore'), '55');
 }
 
+exports['jump opcodes'] = function (test) {
+	test.equal(compiler.compile('jump'), '56');
+	test.equal(compiler.compile('jumpi'), '57');
+	test.equal(compiler.compile('jumpdest'), '5b');
+}
+
