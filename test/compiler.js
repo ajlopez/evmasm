@@ -106,3 +106,11 @@ exports['compile gas opcode'] = function (test) {
 	test.equal(compiler.compile('gas'), '5a');
 }
 
+exports['compile push opcodes'] = function (test) {
+	for (var k = 1; k <= 32; k++) {
+		var opcode = 'push' + k;
+		var expected = (0x60 + k - 1).toString(16);
+		test.strictEqual(compiler.compile(opcode), expected);
+	}
+}
+
