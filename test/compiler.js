@@ -77,20 +77,32 @@ exports['compile pop opcode'] = function (test) {
 	test.equal(compiler.compile('pop'), '50');
 }
 
-exports['memory opcodes'] = function (test) {
+exports['compile memory opcodes'] = function (test) {
 	test.equal(compiler.compile('mload'), '51');
 	test.equal(compiler.compile('mstore'), '52');
 	test.equal(compiler.compile('mstore8'), '53');
 }
 
-exports['storage opcodes'] = function (test) {
+exports['compile storage opcodes'] = function (test) {
 	test.equal(compiler.compile('sload'), '54');
 	test.equal(compiler.compile('sstore'), '55');
 }
 
-exports['jump opcodes'] = function (test) {
+exports['compile jump opcodes'] = function (test) {
 	test.equal(compiler.compile('jump'), '56');
 	test.equal(compiler.compile('jumpi'), '57');
 	test.equal(compiler.compile('jumpdest'), '5b');
+}
+
+exports['compile pc opcode'] = function (test) {
+	test.equal(compiler.compile('pc'), '58');
+}
+
+exports['compile msize opcode'] = function (test) {
+	test.equal(compiler.compile('msize'), '59');
+}
+
+exports['compile gas opcode'] = function (test) {
+	test.equal(compiler.compile('gas'), '5a');
 }
 
