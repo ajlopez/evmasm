@@ -137,3 +137,15 @@ exports['compile log opcodes'] = function (test) {
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
+
+exports['compile system opcodes'] = function (test) {
+	test.equal(compiler.compile('create'), 'f0');
+	test.equal(compiler.compile('call'), 'f1');
+	test.equal(compiler.compile('callcode'), 'f2');
+	test.equal(compiler.compile('return'), 'f3');
+	test.equal(compiler.compile('delegatecall'), 'f4');
+	test.equal(compiler.compile('staticcall'), 'fa');
+	test.equal(compiler.compile('revert'), 'fd');
+	test.equal(compiler.compile('suicide'), 'ff');
+}
+
