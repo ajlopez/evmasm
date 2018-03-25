@@ -72,3 +72,8 @@ exports['compile block opcodes'] = function (test) {
 	test.equal(compiler.compile('difficulty'), '44');
 	test.equal(compiler.compile('gaslimit'), '45');
 }
+
+exports['compile pop opcode'] = function (test) {
+	test.equal(compiler.compile('pop'), '50');
+}
+
