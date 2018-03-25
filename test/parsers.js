@@ -12,4 +12,14 @@ exports['parse name expression'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse hexadecimal integer expression'] = function (test) {
+	var parser = parsers.parser('0x2a');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.value(), '0x2a');
+	
+	test.equal(parser.parseExpression(), null);
+}
 
