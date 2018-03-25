@@ -129,3 +129,11 @@ exports['compile swap opcodes'] = function (test) {
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
+
+exports['compile log opcodes'] = function (test) {
+	for (var k = 0; k <= 4; k++) {
+		var opcode = 'log' + k;
+		var expected = (0xa0 + k).toString(16);
+		test.strictEqual(compiler.compile(opcode), expected);
+	}
+}
