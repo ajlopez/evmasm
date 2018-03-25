@@ -45,6 +45,18 @@ exports['get name token with digits'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 };
 
+exports['get name token with underscore and digits'] = function (test) {
+	var lexer = lexers.lexer('tag_42');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'tag_42');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+};
+
 exports['get two name tokens'] = function (test) {
 	var lexer = lexers.lexer('foo bar');
 	
