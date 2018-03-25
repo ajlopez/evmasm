@@ -46,3 +46,20 @@ exports['compile sha3 opcode'] = function (test) {
 	test.equal(compiler.compile('sha3'), '20');
 }
 
+exports['compile environment opcodes'] = function (test) {
+	test.equal(compiler.compile('address'), '30');
+	test.equal(compiler.compile('balance'), '31');
+	test.equal(compiler.compile('origin'), '32');
+	test.equal(compiler.compile('caller'), '33');
+	test.equal(compiler.compile('callvalue'), '34');
+	test.equal(compiler.compile('calldataload'), '35');
+	test.equal(compiler.compile('calldatasize'), '36');
+	test.equal(compiler.compile('calldatacopy'), '37');
+	test.equal(compiler.compile('codesize'), '38');
+	test.equal(compiler.compile('codecopy'), '39');
+	test.equal(compiler.compile('gasprice'), '3a');
+	test.equal(compiler.compile('extcodesize'), '3b');
+	test.equal(compiler.compile('extcodecopy'), '3c');
+	test.equal(compiler.compile('returndatasize'), '3d');
+	test.equal(compiler.compile('returndatacopy'), '3e');
+}
