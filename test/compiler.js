@@ -77,3 +77,9 @@ exports['compile pop opcode'] = function (test) {
 	test.equal(compiler.compile('pop'), '50');
 }
 
+exports['memory opcodes'] = function (test) {
+	test.equal(compiler.compile('mload'), '51');
+	test.equal(compiler.compile('mstore'), '52');
+	test.equal(compiler.compile('mstore8'), '53');
+}
+
