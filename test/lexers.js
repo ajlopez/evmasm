@@ -21,6 +21,19 @@ exports['get name token'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 };
 
+exports['push token'] = function (test) {
+	var lexer = lexers.lexer('foo');
+	
+	lexer.pushToken(lexer.nextToken());
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	test.equal(lexer.nextToken(), null);
+};
+
 exports['get label token'] = function (test) {
 	var lexer = lexers.lexer('foo:');
 	

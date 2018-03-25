@@ -75,3 +75,15 @@ exports['parse two-bytes hexadecimal integer expression with code'] = function (
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse call expression'] = function (test) {
+	var parser = parsers.parser('mstore(0x40, 0x60)');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.code(), '6060604052');
+	test.equal(expr.codesize(), 5);
+	
+	test.equal(parser.parseExpression(), null);
+}
+
