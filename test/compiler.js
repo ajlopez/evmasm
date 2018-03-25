@@ -63,3 +63,12 @@ exports['compile environment opcodes'] = function (test) {
 	test.equal(compiler.compile('returndatasize'), '3d');
 	test.equal(compiler.compile('returndatacopy'), '3e');
 }
+
+exports['compile block opcodes'] = function (test) {
+	test.equal(compiler.compile('blockhash'), '40');
+	test.equal(compiler.compile('coinbase'), '41');
+	test.equal(compiler.compile('timestamp'), '42');
+	test.equal(compiler.compile('number'), '43');
+	test.equal(compiler.compile('difficulty'), '44');
+	test.equal(compiler.compile('gaslimit'), '45');
+}
