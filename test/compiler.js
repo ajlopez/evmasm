@@ -83,3 +83,8 @@ exports['memory opcodes'] = function (test) {
 	test.equal(compiler.compile('mstore8'), '53');
 }
 
+exports['storage opcodes'] = function (test) {
+	test.equal(compiler.compile('sload'), '54');
+	test.equal(compiler.compile('sstore'), '55');
+}
+
