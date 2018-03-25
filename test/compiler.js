@@ -34,3 +34,11 @@ exports['compile comparison opcodes'] = function (test) {
 	test.equal(compiler.compile('iszero'), '15');
 }
 
+exports['compile bitwise opcodes'] = function (test) {
+	test.equal(compiler.compile('and'), '16');
+	test.equal(compiler.compile('or'), '17');
+	test.equal(compiler.compile('xor'), '18');
+	test.equal(compiler.compile('not'), '19');
+	test.equal(compiler.compile('byte'), '1a');
+}
+
