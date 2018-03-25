@@ -42,3 +42,7 @@ exports['compile bitwise opcodes'] = function (test) {
 	test.equal(compiler.compile('byte'), '1a');
 }
 
+exports['compile sha3 opcode'] = function (test) {
+	test.equal(compiler.compile('sha3'), '20');
+}
+
