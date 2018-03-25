@@ -64,6 +64,44 @@ exports['get two name tokens'] = function (test) {
 	test.equal(lexer.nextToken(), null);
 };
 
+exports['get two name tokens skipping comment'] = function (test) {
+	var lexer = lexers.lexer('foo/* this is a comment */bar');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'bar');
+	test.equal(token.type, TokenType.Name);
+
+	test.equal(lexer.nextToken(), null);
+};
+
+exports['get two name tokens skipping comment with spaces and new line'] = function (test) {
+	var lexer = lexers.lexer('foo /* this is\n a comment*/ bar');
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'foo');
+	test.equal(token.type, TokenType.Name);
+	
+	
+	var token = lexer.nextToken();
+	
+	test.ok(token);
+	test.equal(token.value, 'bar');
+	test.equal(token.type, TokenType.Name);
+
+	test.equal(lexer.nextToken(), null);
+};
+
 exports['get parenthesis as punctuation'] = function (test) {
 	var lexer = lexers.lexer('()');
 	
