@@ -114,3 +114,11 @@ exports['compile push opcodes'] = function (test) {
 	}
 }
 
+exports['compile dup opcodes'] = function (test) {
+	for (var k = 1; k <= 16; k++) {
+		var opcode = 'dup' + k;
+		var expected = (0x80 + k - 1).toString(16);
+		test.strictEqual(compiler.compile(opcode), expected);
+	}
+}
+
