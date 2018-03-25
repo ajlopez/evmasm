@@ -25,4 +25,12 @@ exports['compile arithmetic opcodes'] = function (test) {
 	test.equal(compiler.compile('signextend'),  '0b');
 }
 
+exports['compile comparison opcodes'] = function (test) {
+	test.equal(compiler.compile('lt'), '10');
+	test.equal(compiler.compile('gt'), '11');
+	test.equal(compiler.compile('slt'), '12');
+	test.equal(compiler.compile('sgt'), '13');
+	test.equal(compiler.compile('eq'), '14');
+	test.equal(compiler.compile('iszero'), '15');
+}
 
