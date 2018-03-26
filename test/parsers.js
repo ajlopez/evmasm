@@ -87,3 +87,16 @@ exports['parse call expression'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse unsolved name to label'] = function (test) {
+	var parser = parsers.parser('tag1');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.name(), 'tag1');
+	test.equal(expr.code(), '61____');
+	test.equal(expr.codesize(), 3);
+	
+	test.equal(parser.parseExpression(), null);
+}
+
