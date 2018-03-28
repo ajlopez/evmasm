@@ -100,3 +100,15 @@ exports['parse unsolved name to label'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse segment'] = function (test) {
+	var parser = parsers.parser('0x60 0x40 mstore');
+	
+	var expr = parser.parseSegment();
+	
+	test.ok(expr);
+	test.equal(expr.code(), '6060604052');
+	test.equal(expr.codesize(), 5);
+	
+	test.equal(parser.parseSegment(), null);
+}
+
