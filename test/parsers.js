@@ -100,6 +100,32 @@ exports['parse unsolved name to label'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse unsolved dataSize'] = function (test) {
+	var parser = parsers.parser('dataSize(sub_0)');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.reference(), 'sub_0');
+	test.equal(expr.code(), '61____');
+	test.equal(expr.codesize(), 3);
+	
+	test.equal(parser.parseExpression(), null);
+}
+
+exports['parse unsolved dataOffset'] = function (test) {
+	var parser = parsers.parser('dataOffset(sub_0)');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+	test.equal(expr.reference(), 'sub_0');
+	test.equal(expr.code(), '61____');
+	test.equal(expr.codesize(), 3);
+	
+	test.equal(parser.parseExpression(), null);
+}
+
 exports['parse segment'] = function (test) {
 	var parser = parsers.parser('0x60 0x40 mstore');
 	
