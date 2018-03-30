@@ -141,12 +141,12 @@ exports['parse segment'] = function (test) {
 exports['parse segment with initial label'] = function (test) {
 	var parser = parsers.parser('tag1: 0x60 0x40 mstore');
 	
-	var expr = parser.parseSegment();
+	var segm = parser.parseSegment();
 	
-	test.ok(expr);
-	test.equal(expr.code(), '5b6060604052');
-	test.equal(expr.codesize(), 6);
-	test.equal(expr.label(), 'tag1');
+	test.ok(segm);
+	test.equal(segm.code(), '5b6060604052');
+	test.equal(segm.codesize(), 6);
+	test.equal(segm.label(), 'tag1');
 	
 	test.equal(parser.parseSegment(), null);
 }
@@ -154,19 +154,46 @@ exports['parse segment with initial label'] = function (test) {
 exports['parse two segments with labels'] = function (test) {
 	var parser = parsers.parser('tag1: 0x60 0x40 mstore tag2: stop');
 	
-	var expr = parser.parseSegment();
+	var segm = parser.parseSegment();
 	
-	test.ok(expr);
-	test.equal(expr.code(), '5b6060604052');
-	test.equal(expr.codesize(), 6);
-	test.equal(expr.label(), 'tag1');
+	test.ok(segm);
+	test.equal(segm.code(), '5b6060604052');
+	test.equal(segm.codesize(), 6);
+	test.equal(segm.label(), 'tag1');
 	
-	var expr = parser.parseSegment();
+	var segm = parser.parseSegment();
 	
-	test.ok(expr);
-	test.equal(expr.code(), '5b00');
-	test.equal(expr.codesize(), 2);
-	test.equal(expr.label(), 'tag2');
+	test.ok(segm);
+	test.equal(segm.code(), '5b00');
+	test.equal(segm.codesize(), 2);
+	test.equal(segm.label(), 'tag2');
+
+	test.equal(parser.parseSegment(), null);
+}
+
+exports['parse assembly with two segments'] = function (test) {
+	var parser = parsers.parser('tag1: 0x60 0x40 mstore tag2: stop');
+	
+	var assm = parser.parseAssembly();
+	
+	test.ok(assm);
+	test.ok(assm.segments());
+	test.ok(Array.isArray(assm.segments()));
+	test.equal(assm.segments().length, 2);
+	
+	var segm = assm.segments()[0];
+	
+	test.ok(segm);
+	test.equal(segm.code(), '5b6060604052');
+	test.equal(segm.codesize(), 6);
+	test.equal(segm.label(), 'tag1');
+	
+	var segm = assm.segments()[1];
+	
+	test.ok(segm);
+	test.equal(segm.code(), '5b00');
+	test.equal(segm.codesize(), 2);
+	test.equal(segm.label(), 'tag2');
 
 	test.equal(parser.parseSegment(), null);
 }
