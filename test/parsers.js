@@ -150,3 +150,23 @@ exports['parse segment with initial label'] = function (test) {
 	
 	test.equal(parser.parseSegment(), null);
 }
+
+exports['parse two segments with labels'] = function (test) {
+	var parser = parsers.parser('tag1: 0x60 0x40 mstore tag2: stop');
+	
+	var expr = parser.parseSegment();
+	
+	test.ok(expr);
+	test.equal(expr.code(), '5b6060604052');
+	test.equal(expr.codesize(), 6);
+	test.equal(expr.label(), 'tag1');
+	
+	var expr = parser.parseSegment();
+	
+	test.ok(expr);
+	test.equal(expr.code(), '5b00');
+	test.equal(expr.codesize(), 2);
+	test.equal(expr.label(), 'tag2');
+
+	test.equal(parser.parseSegment(), null);
+}
