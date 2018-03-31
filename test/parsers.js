@@ -196,4 +196,7 @@ exports['parse assembly with two segments'] = function (test) {
 	test.equal(segm.label(), 'tag2');
 
 	test.equal(parser.parseSegment(), null);
+	
+	test.equal(assm.code(), '5b60606040525b00');
+	test.equal(assm.codesize(), 8);
 }
