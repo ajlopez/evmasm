@@ -98,6 +98,11 @@ exports['parse unsolved name to label'] = function (test) {
 	test.equal(expr.codesize(), 3);
 	
 	test.equal(parser.parseExpression(), null);
+
+	test.ok(expr.resolve);
+	expr.resolve({ tag1: 42 });
+	test.equal(expr.code(), '602a');
+	test.equal(expr.codesize(), 2);
 }
 
 exports['parse unsolved dataSize'] = function (test) {
@@ -199,4 +204,16 @@ exports['parse assembly with two segments'] = function (test) {
 	
 	test.equal(assm.code(), '5b60606040525b00');
 	test.equal(assm.codesize(), 8);
+}
+
+exports['resolve assembly offsets'] = function (test) {
+	var parser = parsers.parser('tag1: 0x60 0x40 mstore jump(tag3) tag2: stop tag3: jump(tag2)');
+	
+	var assm = parser.parseAssembly();
+		
+	test.equal(assm.code(), '5b606060405261____565b005b61____56');
+	
+	assm.resolve();
+
+	test.equal(assm.code(), '5b6060604052600b565b005b600956');
 }
