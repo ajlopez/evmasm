@@ -1,11 +1,14 @@
 { "name": "evmasm"
-, "description": "EVM (Ethereum Virtual Machine) Assembler, WIP"
+, "description": "EVM (Ethereum Virtual Machine) Assembler"
 , "keywords": [ "ethereum", "vm", "virtual machine", "evm", "assembler" ]
-, "version": "0.0.1alfa"
+, "version": "0.0.1"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/evmasm.git" }
 , "main": "./lib/evmasm.js"
 , "engines": { "node": ">= 0.12.0" }
+,  "bin": {
+    "evmasm": "./bin/evmasm.js"
+  }
 , "scripts": {
     "test": "simpleunit -r ./test"
   }
