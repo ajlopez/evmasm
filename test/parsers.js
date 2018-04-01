@@ -100,7 +100,7 @@ exports['parse unsolved name to label'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 
 	test.ok(expr.resolve);
-	expr.resolve({ tag1: 42 });
+	expr.resolve({ tag1: { offset: 42 } });
 	test.equal(expr.code(), '602a');
 	test.equal(expr.codesize(), 2);
 }
@@ -249,14 +249,15 @@ exports['parse assembly with two segments and prologue'] = function (test) {
 	test.equal(assm.codesize(), 8);
 }
 
-exports['resolve assembly offsets'] = function (test) {
-	var parser = parsers.parser('tag1: 0x60 0x40 mstore jump(tag3) tag2: stop tag3: jump(tag2)');
+exports['compile auxdata label'] = function (test) {
+	var parser = parsers.parser('auxdata: 0xa165627a7a723058209c14b0491dc15ac395ea1519522f3b1b4162ad8e2a8a0f4e9b43e8b2963c528e0029');
 	
-	var assm = parser.parseAssembly();
-		
-	test.equal(assm.code(), '5b606060405261____565b005b61____56');
+	var segm = parser.parseSegment();
 	
-	assm.resolve();
-
-	test.equal(assm.code(), '5b6060604052600b565b005b600956');
+	test.ok(segm);
+	test.equal(segm.code(), 'a165627a7a723058209c14b0491dc15ac395ea1519522f3b1b4162ad8e2a8a0f4e9b43e8b2963c528e0029');
+	test.equal(segm.codesize(), 43);
+	
+	test.equal(parser.parseSegment(), null);
 }
+
