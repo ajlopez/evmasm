@@ -1,13 +1,13 @@
 
 var parsers = require('../lib/parsers');
 
-exports['parse name expression'] = function (test) {
+exports['parse unsolved reference expression'] = function (test) {
 	var parser = parsers.parser('foo');
 	
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
-	test.equal(expr.name(), 'foo');
+	test.equal(expr.reference(), 'foo');
 	
 	test.equal(parser.parseExpression(), null);
 }
@@ -87,22 +87,17 @@ exports['parse call expression'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
-exports['parse unsolved name to label'] = function (test) {
+exports['parse unsolved name to label reference'] = function (test) {
 	var parser = parsers.parser('tag1');
 	
 	var expr = parser.parseExpression();
 	
 	test.ok(expr);
-	test.equal(expr.name(), 'tag1');
+	test.equal(expr.reference(), 'tag1');
 	test.equal(expr.code(), '61____');
 	test.equal(expr.codesize(), 3);
 	
 	test.equal(parser.parseExpression(), null);
-
-	test.ok(expr.resolve);
-	expr.resolve({ tag1: { offset: 42 } });
-	test.equal(expr.code(), '602a');
-	test.equal(expr.codesize(), 2);
 }
 
 exports['parse unsolved dataSize'] = function (test) {
