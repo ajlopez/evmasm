@@ -1,6 +1,9 @@
 
 var evmasm = require('..');
 
+var fs = require('fs');
+var path = require('path');
+
 exports['compile simple expression'] = function (test) {
 	var bytecode = evmasm.compile('mstore(0x40, 0x60)');
 	
@@ -21,3 +24,15 @@ exports['compile simple expression with prologue and assembly'] = function (test
 	test.ok(bytecode);
 	test.equal(bytecode, '60606040526001600a0000');
 }
+
+exports['compile file'] = function (test) {
+	var filename = path.join(__dirname, 'counter.asm');
+	var code = fs.readFileSync(filename).toString();
+	
+	var bytecode = evmasm.compile(code);
+	
+	test.ok(bytecode);
+	test.ok(bytecode.indexOf('60606040') === 0);
+	test.ok(bytecode.indexOf('a165627a7a723058209c14b0491dc15ac395ea1519522f3b1b4162ad8e2a8a0f4e9b43e8b2963c528e0029') > 0);
+}
+

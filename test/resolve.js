@@ -48,6 +48,32 @@ exports['resolve assembly offsets'] = function (test) {
 	test.equal(assm.code(), '5b6060604052600b565b005b600956');
 }
 
+exports['resolve label reference'] = function (test) {
+	var parser = parsers.parser('jump(tag1) tag1: stop');
+	
+	var assm = parser.parseAssembly();
+	
+	test.equal(parser.parseExpression(), null);
+
+	assm.resolve();
+	
+	test.equal(assm.code(), '6003565b00');
+	test.equal(assm.codesize(), 5);
+}
+
+exports['resolve label references with contiguous labels'] = function (test) {
+	var parser = parsers.parser('jump(tag1) jump(tag2) tag1: tag2: stop');
+	
+	var assm = parser.parseAssembly();
+	
+	test.equal(parser.parseExpression(), null);
+
+	assm.resolve();
+	
+	test.equal(assm.code(), '6006566006565b00');
+	test.equal(assm.codesize(), 8);
+}
+
 exports['resolve assembly datasize'] = function (test) {
 	var parser = parsers.parser('dataSize(sub_0) stop sub_0: assembly { 0x60 0x40 mstore }');
 	
