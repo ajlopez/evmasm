@@ -131,6 +131,19 @@ exports['parse unsolved dataOffset'] = function (test) {
 	test.equal(parser.parseExpression(), null);
 }
 
+exports['parse and compile assembly expression'] = function (test) {
+	var parser = parsers.parser('assembly { tag1: 0x60 0x40 mstore tag2: stop }');
+	
+	var expr = parser.parseExpression();
+	
+	test.ok(expr);
+		
+	test.equal(expr.code(), '5b60606040525b00');
+	test.equal(expr.codesize(), 8);
+	
+	test.equal(parser.parseExpression(), null);
+}
+
 exports['parse segment'] = function (test) {
 	var parser = parsers.parser('0x60 0x40 mstore');
 	
