@@ -219,6 +219,36 @@ exports['parse assembly with two segments'] = function (test) {
 	test.equal(assm.codesize(), 8);
 }
 
+exports['parse assembly with two segments and prologue'] = function (test) {
+	var parser = parsers.parser('EVM assembly: tag1: 0x60 0x40 mstore tag2: stop');
+	
+	var assm = parser.parseAssembly();
+	
+	test.ok(assm);
+	test.ok(assm.segments());
+	test.ok(Array.isArray(assm.segments()));
+	test.equal(assm.segments().length, 2);
+	
+	var segm = assm.segments()[0];
+	
+	test.ok(segm);
+	test.equal(segm.code(), '5b6060604052');
+	test.equal(segm.codesize(), 6);
+	test.equal(segm.label(), 'tag1');
+	
+	var segm = assm.segments()[1];
+	
+	test.ok(segm);
+	test.equal(segm.code(), '5b00');
+	test.equal(segm.codesize(), 2);
+	test.equal(segm.label(), 'tag2');
+
+	test.equal(parser.parseSegment(), null);
+	
+	test.equal(assm.code(), '5b60606040525b00');
+	test.equal(assm.codesize(), 8);
+}
+
 exports['resolve assembly offsets'] = function (test) {
 	var parser = parsers.parser('tag1: 0x60 0x40 mstore jump(tag3) tag2: stop tag3: jump(tag2)');
 	
