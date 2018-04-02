@@ -102,8 +102,8 @@ data(0x01020304)	// arbitrary data
 
 ## Versions
 
-0.0.1 - Published
-0.0.2 - Published, opcode and data functions
+- 0.0.1 Published
+- 0.0.2 Published, opcode and data functions
 
 ## Contribution
 
