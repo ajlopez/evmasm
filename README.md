@@ -83,7 +83,14 @@ var bytecode = evmasm.compile('mstore(0x40, 0x60)');
 console.log(bytecode); // 6060604052
 ```
 
+## Additional Opcodes
 
+There are new functions to support literal data:
+
+```
+opcode(0xfa) 		// new opcode
+data(0x01020304)	// arbitrary data
+```
 
 ## References
 
@@ -96,6 +103,7 @@ console.log(bytecode); // 6060604052
 ## Versions
 
 0.0.1 - Published
+0.0.2 - Published, opcode and data functions
 
 ## Contribution
 
