@@ -25,6 +25,20 @@ exports['compile simple expression with prologue and assembly'] = function (test
 	test.equal(bytecode, '60606040526001600a0000');
 }
 
+exports['compile opcode expression'] = function (test) {
+	var bytecode = evmasm.compile('opcode(0xfa)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, 'fa');
+}
+
+exports['compile data expression'] = function (test) {
+	var bytecode = evmasm.compile('data(0x01020304)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '01020304');
+}
+
 exports['compile file'] = function (test) {
 	var filename = path.join(__dirname, 'counter.asm');
 	var code = fs.readFileSync(filename).toString();
