@@ -149,3 +149,9 @@ exports['compile system opcodes'] = function (test) {
 	test.equal(compiler.compile('suicide'), 'ff');
 }
 
+exports['define and compile custom upcode'] = function (test) {
+	compiler.define('foobar', 'fb');
+	test.equal(compiler.compile('foobar'), 'fb');
+	compiler.define('BAR', 'fa');
+	test.equal(compiler.compile('bar'), 'fa');
+}
