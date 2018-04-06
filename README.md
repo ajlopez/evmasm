@@ -71,7 +71,7 @@ contract Empty {
 
 Install
 ```
-npm instal evmasm
+npm install evmasm
 ```
 
 Usage
