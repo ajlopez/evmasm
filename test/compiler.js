@@ -46,6 +46,10 @@ exports['compile sha3 opcode'] = function (test) {
 	test.equal(compiler.compile('sha3'), '20');
 }
 
+exports['compile keccak256 opcode'] = function (test) {
+	test.equal(compiler.compile('keccak256'), '20');
+}
+
 exports['compile environment opcodes'] = function (test) {
 	test.equal(compiler.compile('address'), '30');
 	test.equal(compiler.compile('balance'), '31');
