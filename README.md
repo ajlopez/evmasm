@@ -104,6 +104,7 @@ data(0x01020304)	// arbitrary data
 
 - 0.0.1 Published
 - 0.0.2 Published, opcode and data functions
+- 0.0.3 Published, define custom opcode and data, keccak256 opcode (old sha3)
 
 ## Contribution
 
