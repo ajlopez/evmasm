@@ -50,3 +50,11 @@ exports['compile file'] = function (test) {
 	test.ok(bytecode.indexOf('a165627a7a723058209c14b0491dc15ac395ea1519522f3b1b4162ad8e2a8a0f4e9b43e8b2963c528e0029') > 0);
 }
 
+exports['compile defined opcode'] = function (test) {
+	evmasm.define('foofoo', 'fa');
+	var bytecode = evmasm.compile('foofoo(0x40, 0x60)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '60606040fa');
+}
+
