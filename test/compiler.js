@@ -150,7 +150,7 @@ exports['compile system opcodes'] = function (test) {
 	test.equal(compiler.compile('delegatecall'), 'f4');
 	test.equal(compiler.compile('staticcall'), 'fa');
 	test.equal(compiler.compile('revert'), 'fd');
-	test.equal(compiler.compile('suicide'), 'ff');
+	test.equal(compiler.compile('selfdestruct'), 'ff');
 }
 
 exports['define and compile custom upcode'] = function (test) {
