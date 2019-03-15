@@ -95,6 +95,7 @@ data(0x01020304)	// arbitrary data
 ## References
 
 - [Ethereum Project](https://ethereum.org/)
+- [The CREATE2 OpCode and DApp Onboarding in Ethereum](https://hackernoon.com/the-create2-opcode-and-dapp-onboarding-in-ethereum-e2178e6c20cb)
 
 ## Samples
 
