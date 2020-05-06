@@ -154,6 +154,7 @@ exports['compile system opcodes'] = function (test) {
 	test.equal(compiler.compile('create2'), 'f5');
 	test.equal(compiler.compile('staticcall'), 'fa');
 	test.equal(compiler.compile('revert'), 'fd');
+	test.equal(compiler.compile('invalid'), 'fe');
 	test.equal(compiler.compile('selfdestruct'), 'ff');
 }
 
