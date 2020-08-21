@@ -58,3 +58,10 @@ exports['compile defined opcode'] = function (test) {
 	test.equal(bytecode, '60606040fa');
 }
 
+exports['compile extcodehash'] = function (test) {
+	var bytecode = evmasm.compile('extcodehash(0x40)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '60403f');
+}
+
