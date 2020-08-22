@@ -65,3 +65,10 @@ exports['compile extcodehash'] = function (test) {
 	test.equal(bytecode, '60403f');
 }
 
+exports['compile extcodesize'] = function (test) {
+	var bytecode = evmasm.compile('extcodesize(0x40)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '60403b');
+}
+
