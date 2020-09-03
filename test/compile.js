@@ -72,3 +72,17 @@ exports['compile extcodesize'] = function (test) {
 	test.equal(bytecode, '60403b');
 }
 
+exports['compile selfbalance'] = function (test) {
+	var bytecode = evmasm.compile('selfbalance');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '47');
+}
+
+exports['compile selfbalance without arguments'] = function (test) {
+	var bytecode = evmasm.compile('selfbalance()');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '47');
+}
+
