@@ -86,3 +86,17 @@ exports['compile selfbalance without arguments'] = function (test) {
 	test.equal(bytecode, '47');
 }
 
+exports['compile chainid'] = function (test) {
+	var bytecode = evmasm.compile('chainid');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '46');
+}
+
+exports['compile chainid without arguments'] = function (test) {
+	var bytecode = evmasm.compile('chainid()');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '46');
+}
+
