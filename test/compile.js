@@ -100,3 +100,52 @@ exports['compile chainid without arguments'] = function (test) {
 	test.equal(bytecode, '46');
 }
 
+exports['compile beginsub'] = function (test) {
+	var bytecode = evmasm.compile('beginsub');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5c');
+}
+
+exports['compile beginsub without arguments'] = function (test) {
+	var bytecode = evmasm.compile('beginsub()');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5c');
+}
+
+exports['compile returnsub'] = function (test) {
+	var bytecode = evmasm.compile('returnsub');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5d');
+}
+
+exports['compile returnsub without arguments'] = function (test) {
+	var bytecode = evmasm.compile('returnsub()');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5d');
+}
+
+exports['compile jumpsub'] = function (test) {
+	var bytecode = evmasm.compile('jumpsub');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5e');
+}
+
+exports['compile jumpsub without arguments'] = function (test) {
+	var bytecode = evmasm.compile('jumpsub()');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '5e');
+}
+
+exports['compile jumpsub with argument'] = function (test) {
+	var bytecode = evmasm.compile('jumpsub(0x2a)');
+	
+	test.ok(bytecode);
+	test.equal(bytecode, '602a5e');
+}
+
