@@ -1,5 +1,5 @@
 
-var compiler = require('../lib/compiler');
+const compiler = require('../lib/compiler');
 
 exports['compile stop opcode'] = function (test) {
 	test.equal(compiler.compile('stop'), '00');
@@ -114,33 +114,37 @@ exports['compile gas opcode'] = function (test) {
 }
 
 exports['compile push opcodes'] = function (test) {
-	for (var k = 1; k <= 32; k++) {
-		var opcode = 'push' + k;
-		var expected = (0x60 + k - 1).toString(16);
+	for (let k = 1; k <= 32; k++) {
+		const opcode = 'push' + k;
+		const expected = (0x60 + k - 1).toString(16);
+        
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
 
 exports['compile dup opcodes'] = function (test) {
-	for (var k = 1; k <= 16; k++) {
-		var opcode = 'dup' + k;
-		var expected = (0x80 + k - 1).toString(16);
+	for (let k = 1; k <= 16; k++) {
+		const opcode = 'dup' + k;
+		const expected = (0x80 + k - 1).toString(16);
+        
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
 
 exports['compile swap opcodes'] = function (test) {
-	for (var k = 1; k <= 16; k++) {
-		var opcode = 'swap' + k;
-		var expected = (0x90 + k - 1).toString(16);
+	for (let k = 1; k <= 16; k++) {
+		const opcode = 'swap' + k;
+		const expected = (0x90 + k - 1).toString(16);
+        
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
 
 exports['compile log opcodes'] = function (test) {
-	for (var k = 0; k <= 4; k++) {
-		var opcode = 'log' + k;
-		var expected = (0xa0 + k).toString(16);
+	for (let k = 0; k <= 4; k++) {
+		const opcode = 'log' + k;
+		const expected = (0xa0 + k).toString(16);
+        
 		test.strictEqual(compiler.compile(opcode), expected);
 	}
 }
@@ -164,3 +168,4 @@ exports['define and compile custom upcode'] = function (test) {
 	compiler.define('BAR', 'fa');
 	test.equal(compiler.compile('bar'), 'fa');
 }
+
